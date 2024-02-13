@@ -1,4 +1,4 @@
-package me.vaimon.rickandmortywiki.ui.main
+package me.vaimon.rickandmortywiki.ui
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
