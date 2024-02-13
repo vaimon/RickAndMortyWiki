@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -16,9 +15,9 @@ class MainViewModel: ViewModel() {
     fun emulatePredefinedSettingsFetching(){
         viewModelScope.launch {
             delay(2000L)
-            _uiState.value = _uiState.value!!.copy(isReady = true)
+            _uiState.value = _uiState.value!!.copy(keepSplashOn = false)
         }
     }
 
-    data class UiState(val isReady: Boolean = false)
+    data class UiState(val keepSplashOn: Boolean = true)
 }
