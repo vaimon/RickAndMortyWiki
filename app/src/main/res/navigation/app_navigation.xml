@@ -8,20 +8,23 @@
     <fragment
         android:id="@+id/characterListFragment"
         android:name="me.vaimon.rickandmortywiki.ui.character_list.CharacterListFragment"
-        android:label="Character List"
+        android:label="@string/app_name"
         tools:layout="@layout/fragment_character_list"
         >
         <action
             android:id="@+id/action_open_characterInfo"
-            app:destination="@id/characterInfo" />
+            app:destination="@id/characterInfo"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <fragment
         android:id="@+id/characterInfo"
-        android:name="me.vaimon.rickandmortywiki.ui.character_info.CharacterInfo"
-        android:label="Character Info"
+        android:name="me.vaimon.rickandmortywiki.ui.character_info.CharacterInfoFragment"
         tools:layout="@layout/fragment_character_info">
         <argument
-            android:name="characterId"
-            app:argType="integer" />
+            android:name="characterInfo"
+            app:argType="me.vaimon.rickandmortywiki.ui.character_list.models.CharacterBaseInfo" />
     </fragment>
 </navigation>

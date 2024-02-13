@@ -34,4 +34,8 @@ class MainActivity : AppCompatActivity() {
 
         viewModel?.emulatePredefinedSettingsFetching()
     }
+
+    fun setTitle(title: String){
+        binding?.toolbar?.title = title
+    }
 }

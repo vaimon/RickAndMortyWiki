@@ -21,7 +21,8 @@ class CharacterListFragment: Fragment() {
         CharactersRecyclerViewAdapter(
             object: CharactersRecyclerViewAdapter.OnItemClickListener{
                 override fun onCharacterClick(character: CharacterBaseInfo) {
-                    findNavController().navigate(R.id.action_open_characterInfo)
+                    val action = CharacterListFragmentDirections.actionOpenCharacterInfo(character)
+                    findNavController().navigate(action)
                 }
             }
         )
