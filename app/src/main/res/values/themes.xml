@@ -5,7 +5,12 @@
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
-    <style name="Theme.RickAndMortyWiki.Splash" parent="Base.Theme.RickAndMortyWiki">
-        <item name="android:windowSplashscreenContent">@drawable/animated_logo</item>
+    <style name="Theme.RickAndMortyWiki" parent="Base.Theme.RickAndMortyWiki">
+
+    </style>
+
+    <style name="Theme.RickAndMortyWiki.Splash" parent="Theme.SplashScreen">
+        <item name="postSplashScreenTheme">@style/Theme.RickAndMortyWiki</item>
+        <item name="android:windowSplashscreenContent">@drawable/background_static_logo</item>
     </style>
 </resources>

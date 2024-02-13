@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Theme.RickAndMortyWiki.Splash" parent="Base.Theme.RickAndMortyWiki">
-        <item name="android:windowSplashScreenAnimatedIcon">@drawable/animated_logo</item>
+    <style name="Theme.RickAndMortyWiki.Splash" parent="Theme.SplashScreen">
+        <item name="postSplashScreenTheme">@style/Theme.RickAndMortyWiki</item>
+        <item name="android:windowSplashScreenBackground">@color/white</item>
+        <item name="android:windowSplashScreenAnimatedIcon">@drawable/logo_animated</item>
+        <item name="android:windowSplashScreenAnimationDuration">2000</item>
     </style>
 </resources>
