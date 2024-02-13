@@ -14,7 +14,7 @@ class MainViewModel: ViewModel() {
 
     fun emulatePredefinedSettingsFetching(){
         viewModelScope.launch {
-            delay(2000L)
+            delay(2500L)
             _uiState.value = _uiState.value!!.copy(keepSplashOn = false)
         }
     }
