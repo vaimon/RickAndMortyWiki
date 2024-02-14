@@ -13,7 +13,6 @@ import javax.inject.Inject
 @HiltViewModel
 class CharacterListViewModel @Inject constructor(
     private val getCharactersPageUseCase: GetCharactersPageUseCase
-
 ): ViewModel() {
     private val _characterList: MutableLiveData<List<CharacterBaseInfo>> = MutableLiveData()
     val characterList: LiveData<List<CharacterBaseInfo>> = _characterList
