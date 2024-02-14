@@ -24,25 +24,13 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.25" />
 
-    <LinearLayout
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvInfoTiles"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:paddingHorizontal="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline">
-
-        <include
-            android:id="@+id/infoStatus"
-            layout="@layout/item_info" />
-        <include
-            android:id="@+id/infoSpecies"
-            layout="@layout/item_info" />
-        <include
-            android:id="@+id/infoType"
-            layout="@layout/item_info" />
-        <include
-            android:id="@+id/infoGender"
-            layout="@layout/item_info" />
-    </LinearLayout>
+        app:layout_constraintTop_toTopOf="@+id/guideline"
+        tools:listitem="@layout/item_info"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,7 +10,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import me.vaimon.rickandmortywiki.databinding.FragmentCharacterListBinding
-import me.vaimon.rickandmortywiki.ui.character_list.adapters.CharactersRecyclerViewAdapter
+import me.vaimon.rickandmortywiki.ui.character_list.adapters.CharacterRecyclerViewAdapter
 import me.vaimon.rickandmortywiki.models.SeriesCharacter
 
 
@@ -18,9 +18,9 @@ import me.vaimon.rickandmortywiki.models.SeriesCharacter
 class CharacterListFragment: Fragment() {
 
     private lateinit var binding: FragmentCharacterListBinding
-    private val characterListAdapter: CharactersRecyclerViewAdapter by lazy {
-        CharactersRecyclerViewAdapter(
-            object: CharactersRecyclerViewAdapter.OnItemClickListener{
+    private val characterListAdapter: CharacterRecyclerViewAdapter by lazy {
+        CharacterRecyclerViewAdapter(
+            object: CharacterRecyclerViewAdapter.OnItemClickListener{
                 override fun onCharacterClick(character: SeriesCharacter) {
                     val action = CharacterListFragmentDirections.actionOpenCharacterInfo(character)
                     findNavController().navigate(action)

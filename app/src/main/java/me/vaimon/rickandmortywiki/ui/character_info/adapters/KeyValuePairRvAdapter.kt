@@ -1,27 +1,27 @@
-package me.vaimon.rickandmortywiki.ui.character_list.adapters
+package me.vaimon.rickandmortywiki.ui.character_info.adapters
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import me.vaimon.rickandmortywiki.databinding.ItemCharacterBinding
+import me.vaimon.rickandmortywiki.databinding.ItemInfoBinding
 import me.vaimon.rickandmortywiki.models.SeriesCharacter
 
-class CharacterRecyclerViewAdapter(
+class KeyValuePairRvAdapter(
     private val onItemClickListener: OnItemClickListener? = null
-) : RecyclerView.Adapter<CharacterRecyclerViewAdapter.ViewHolder>() {
+) : RecyclerView.Adapter<KeyValuePairRvAdapter.ViewHolder>() {
 
-    val characters: MutableList<SeriesCharacter> = mutableListOf()
+    private val keyValuePairsData: MutableList<Pair<String, String>> = mutableListOf()
 
     private val onClickListener = View.OnClickListener{
         val item = it.tag as SeriesCharacter
-        onItemClickListener?.onCharacterClick(item)
+        onItemClickListener?.onPairClick(item)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
-            ItemCharacterBinding.inflate(
+            ItemInfoBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
@@ -30,9 +30,10 @@ class CharacterRecyclerViewAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = characters[position]
+        val item = keyValuePairsData[position]
 
-        holder.binding.tvName.text = item.name
+        holder.binding.tvKey.text = item.first
+        holder.binding.tvValue.text = item.second
 
         onClickListener.also {
             with(holder.itemView) {
@@ -42,20 +43,20 @@ class CharacterRecyclerViewAdapter(
         }
     }
 
-    override fun getItemCount(): Int = characters.size
+    override fun getItemCount(): Int = keyValuePairsData.size
 
     @SuppressLint("NotifyDataSetChanged")
-    fun replaceAllCharacters(newCharacterList: List<SeriesCharacter>){
-        characters.clear()
-        characters.addAll(newCharacterList)
+    fun replaceAllEntries(newCharacterList: List<Pair<String, String>>){
+        keyValuePairsData.clear()
+        keyValuePairsData.addAll(newCharacterList)
         notifyDataSetChanged()
     }
 
-    inner class ViewHolder(val binding: ItemCharacterBinding) :
+    inner class ViewHolder(val binding: ItemInfoBinding) :
         RecyclerView.ViewHolder(binding.root)
 
     interface OnItemClickListener {
-        fun onCharacterClick(character: SeriesCharacter)
+        fun onPairClick(character: SeriesCharacter)
     }
 
 }
