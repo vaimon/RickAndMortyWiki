@@ -8,6 +8,8 @@ class GetCharactersPageUseCase @Inject constructor(
     private val characterRepository: CharacterRepository
 ) {
     suspend operator fun invoke(page: Int = 1): List<CharacterEntity>{
-        return characterRepository.getCharacters(page)
+        return characterRepository.getCharacters(page).map{
+            if(it.type.isBlank()) it.copy(type = "Unknown") else it
+        }
     }
 }

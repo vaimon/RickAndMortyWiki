@@ -19,9 +19,21 @@
         <item name="android:windowSplashscreenContent">@drawable/background_static_logo</item>
     </style>
 
-    <style name="Theme.RickAndMortyWiki.NameTextView" parent="Widget.MaterialComponents.TextView">
-        <item name="android:textSize">20sp</item>
+    <style name="Theme.RickAndMortyWiki.TextView.SingleLine" parent="Widget.MaterialComponents.TextView">
         <item name="android:maxLines">1</item>
         <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="Theme.RickAndMortyWiki.TextView.Name" parent="Theme.RickAndMortyWiki.TextView.SingleLine">
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="Theme.RickAndMortyWiki.TextView.Key" parent="Theme.RickAndMortyWiki.TextView.SingleLine">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Theme.RickAndMortyWiki.TextView.Value" parent="Theme.RickAndMortyWiki.TextView.SingleLine">
+        <item name="android:textSize">16sp</item>
     </style>
 </resources>

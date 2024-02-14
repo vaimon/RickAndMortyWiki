@@ -6,16 +6,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import me.vaimon.rickandmortywiki.databinding.ItemCharacterBinding
-import me.vaimon.rickandmortywiki.models.CharacterBaseInfo
+import me.vaimon.rickandmortywiki.models.SeriesCharacter
 
 class CharactersRecyclerViewAdapter(
     private val onItemClickListener: OnItemClickListener? = null
 ) : RecyclerView.Adapter<CharactersRecyclerViewAdapter.ViewHolder>() {
 
-    val characters: MutableList<CharacterBaseInfo> = mutableListOf()
+    val characters: MutableList<SeriesCharacter> = mutableListOf()
 
     private val onClickListener = View.OnClickListener{
-        val item = it.tag as CharacterBaseInfo
+        val item = it.tag as SeriesCharacter
         onItemClickListener?.onCharacterClick(item)
     }
 
@@ -45,7 +45,7 @@ class CharactersRecyclerViewAdapter(
     override fun getItemCount(): Int = characters.size
 
     @SuppressLint("NotifyDataSetChanged")
-    fun replaceAllCharacters(newCharacterList: List<CharacterBaseInfo>){
+    fun replaceAllCharacters(newCharacterList: List<SeriesCharacter>){
         characters.clear()
         characters.addAll(newCharacterList)
         notifyDataSetChanged()
@@ -55,7 +55,7 @@ class CharactersRecyclerViewAdapter(
         RecyclerView.ViewHolder(binding.root)
 
     interface OnItemClickListener {
-        fun onCharacterClick(character: CharacterBaseInfo)
+        fun onCharacterClick(character: SeriesCharacter)
     }
 
 }
