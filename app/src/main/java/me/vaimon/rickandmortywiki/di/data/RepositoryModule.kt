@@ -5,7 +5,11 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import me.vaimon.rickandmortywiki.data.datasource.ApiDataSource
+import me.vaimon.rickandmortywiki.data.mapper.CharacterDomainDataMapper
+import me.vaimon.rickandmortywiki.data.mapper.Mapper
+import me.vaimon.rickandmortywiki.data.models.CharacterData
 import me.vaimon.rickandmortywiki.data.repository.CharacterRepositoryImpl
+import me.vaimon.rickandmortywiki.domain.entities.CharacterEntity
 import me.vaimon.rickandmortywiki.domain.repository.CharacterRepository
 
 @Module
@@ -14,8 +18,12 @@ class RepositoryModule {
 
     @Provides
     fun provideCharacterRepository(
-        apiDataSource: ApiDataSource
+        apiDataSource: ApiDataSource,
+        characterDomainDataMapper: Mapper<CharacterEntity, CharacterData>
     ): CharacterRepository{
-        return CharacterRepositoryImpl(apiDataSource)
+        return CharacterRepositoryImpl(
+            apiDataSource,
+            characterDomainDataMapper
+        )
     }
 }

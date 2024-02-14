@@ -1,5 +1,6 @@
 package me.vaimon.rickandmortywiki.data.datasource
 
+import me.vaimon.rickandmortywiki.data.models.CharacterListData
 import me.vaimon.rickandmortywiki.domain.entities.CharacterEntity
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -10,5 +11,5 @@ interface ApiDataSource {
     }
 
     @GET("character")
-    suspend fun getCharacters(@Query("page") page: Int): List<CharacterEntity>
+    suspend fun getCharacters(@Query("page") page: Int): CharacterListData
 }

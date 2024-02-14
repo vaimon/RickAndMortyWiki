@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import me.vaimon.rickandmortywiki.databinding.ItemCharacterBinding
-import me.vaimon.rickandmortywiki.ui.character_list.models.CharacterBaseInfo
+import me.vaimon.rickandmortywiki.models.CharacterBaseInfo
 
 class CharactersRecyclerViewAdapter(
     private val onItemClickListener: OnItemClickListener? = null

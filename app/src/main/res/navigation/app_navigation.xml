@@ -25,6 +25,6 @@
         tools:layout="@layout/fragment_character_info">
         <argument
             android:name="characterInfo"
-            app:argType="me.vaimon.rickandmortywiki.ui.character_list.models.CharacterBaseInfo" />
+            app:argType="me.vaimon.rickandmortywiki.models.CharacterBaseInfo" />
     </fragment>
 </navigation>

@@ -6,14 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
-import me.vaimon.rickandmortywiki.R
 import me.vaimon.rickandmortywiki.databinding.FragmentCharacterListBinding
 import me.vaimon.rickandmortywiki.ui.character_list.adapters.CharactersRecyclerViewAdapter
-import me.vaimon.rickandmortywiki.ui.character_list.models.CharacterBaseInfo
+import me.vaimon.rickandmortywiki.models.CharacterBaseInfo
 
 
 @AndroidEntryPoint

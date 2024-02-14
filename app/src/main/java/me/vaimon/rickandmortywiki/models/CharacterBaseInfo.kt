@@ -1,4 +1,4 @@
-package me.vaimon.rickandmortywiki.ui.character_list.models
+package me.vaimon.rickandmortywiki.models
 
 import android.os.Parcel
 import android.os.Parcelable
