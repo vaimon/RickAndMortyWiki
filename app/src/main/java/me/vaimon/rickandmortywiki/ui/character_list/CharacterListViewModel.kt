@@ -23,6 +23,9 @@ class CharacterListViewModel @Inject constructor(
     private val _uiState: MutableLiveData<UiState> = MutableLiveData(UiState())
     val uiState: LiveData<UiState> = _uiState
 
+    private val _detailsEndpoint: MutableLiveData<SeriesCharacter> = MutableLiveData()
+    val detailsEndpoint: LiveData<SeriesCharacter> = _detailsEndpoint
+
 
     init {
         requestNextPage()
@@ -54,8 +57,17 @@ class CharacterListViewModel @Inject constructor(
         _uiState.value = _uiState.value?.copy(errorMessage = null)
     }
 
+    fun onCharacterClick(character: SeriesCharacter) {
+        _detailsEndpoint.value = character
+    }
+
+    fun onCharacterDetailsShown(){
+        _detailsEndpoint.value = null
+    }
+
     data class UiState(
         val isDataLoading: Boolean = false,
-        val errorMessage: String? = null
+        val errorMessage: String? = null,
+
     )
 }
