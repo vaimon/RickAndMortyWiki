@@ -15,34 +15,33 @@ class CharacterRepositoryImpl(
     private val apiDataSource: ApiDataSource,
     private val characterMapper: Mapper<CharacterEntity, CharacterData>
 ) : CharacterRepository {
-    override suspend fun getCharactersNextPage(lastCharacterId: Int?): List<CharacterEntity> = withContext(Dispatchers.IO) {
+    override suspend fun getCharactersNextPage(lastCharacterId: Int?): List<CharacterEntity> =
+        withContext(Dispatchers.IO) {
+            val nextRequiredPage = getNextDbPageNumber(lastCharacterId)
+                ?: throw IllegalStateException("Database must contain page for id: $lastCharacterId")
+            val obtainedResult = getPageFromDatabase(nextRequiredPage) ?: run {
+                val obtainedCharacterList = apiDataSource.getCharacters(nextRequiredPage).results
+                savePageToDatabase(nextRequiredPage, obtainedCharacterList)
+                obtainedCharacterList
+            }
 
-        val nextRequiredPage = getNextDbPageNumber(lastCharacterId)
-            ?: throw IllegalStateException("Database must contain page for id: $lastCharacterId")
-
-        val obtainedResult = getPageFromDatabase(nextRequiredPage) ?: run{
-            val obtainedCharacterList = apiDataSource.getCharacters(nextRequiredPage).results
-            savePageToDatabase(nextRequiredPage, obtainedCharacterList)
-            obtainedCharacterList
+            obtainedResult.map {
+                characterMapper.from(it)
+            }
         }
 
-        obtainedResult.map{
-            characterMapper.from(it)
-        }
-    }
-
-    private suspend fun getNextDbPageNumber(lastCharacterId: Int?): Int?{
-        return if(lastCharacterId != null){
+    private suspend fun getNextDbPageNumber(lastCharacterId: Int?): Int? {
+        return if (lastCharacterId != null) {
             db.pageKeyDao().getRemoteKeyById(lastCharacterId)?.page?.plus(1)
         } else 1
     }
 
-    private suspend fun getPageFromDatabase(pageNumber: Int): List<CharacterData>?{
+    private suspend fun getPageFromDatabase(pageNumber: Int): List<CharacterData>? {
         val pageInfo = db.pageKeyDao().getPage(pageNumber) ?: return null
         return db.characterDao().getCharactersPage(pageInfo.startId, pageInfo.endId)
     }
 
-    private suspend fun savePageToDatabase(pageNumber: Int, characterList: List<CharacterData>){
+    private suspend fun savePageToDatabase(pageNumber: Int, characterList: List<CharacterData>) {
         db.characterDao().insertAll(characterList)
         db.pageKeyDao().insertOrReplace(
             PageKey(

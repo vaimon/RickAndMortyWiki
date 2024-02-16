@@ -1,10 +1,12 @@
 package me.vaimon.rickandmortywiki.ui.character_list
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import me.vaimon.rickandmortywiki.domain.entities.CharacterEntity
 import me.vaimon.rickandmortywiki.domain.usecase.GetCharactersPageUseCase
@@ -31,7 +33,7 @@ class CharacterListViewModel @Inject constructor(
     }
 
     private fun requestNextPage(lastCharacterId: Int? = null){
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.Main) {
             _uiState.value = _uiState.value?.copy(isDataLoading = true)
             try{
                 getCharactersPageUseCase.invoke(lastCharacterId).map{
