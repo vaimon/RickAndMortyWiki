@@ -15,7 +15,7 @@ class KeyValuePairRvAdapter(
     private val keyValuePairsData: MutableList<Pair<String, String>> = mutableListOf()
 
     private val onClickListener = View.OnClickListener{
-        val item = it.tag as SeriesCharacter
+        val item = it.tag as Pair<String, String>
         onItemClickListener?.onPairClick(item)
     }
 
@@ -56,7 +56,7 @@ class KeyValuePairRvAdapter(
         RecyclerView.ViewHolder(binding.root)
 
     interface OnItemClickListener {
-        fun onPairClick(character: SeriesCharacter)
+        fun onPairClick(character: Pair<String, String>)
     }
 
 }

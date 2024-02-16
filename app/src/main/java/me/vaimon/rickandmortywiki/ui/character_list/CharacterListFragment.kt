@@ -82,14 +82,13 @@ class CharacterListFragment: Fragment() {
             binding.pbLoadingIndicator.visibility = if(it.isDataLoading) View.VISIBLE else View.GONE
         }
 
-        viewModel.detailsEndpoint.observe(viewLifecycleOwner){
-            it?.let {navigateToDetailsScreen(it) }
+        viewModel.navigateToDetailsEvent.observe(viewLifecycleOwner){
+            navigateToDetailsScreen(it)
         }
     }
 
     private fun navigateToDetailsScreen(character: SeriesCharacter){
         val action = CharacterListFragmentDirections.actionOpenCharacterInfo(character)
         findNavController().navigate(action)
-        viewModel.onCharacterDetailsShown()
     }
 }

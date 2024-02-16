@@ -10,6 +10,7 @@ import me.vaimon.rickandmortywiki.domain.entities.CharacterEntity
 import me.vaimon.rickandmortywiki.domain.usecase.GetCharactersPageUseCase
 import me.vaimon.rickandmortywiki.data.mapper.Mapper
 import me.vaimon.rickandmortywiki.models.SeriesCharacter
+import me.vaimon.rickandmortywiki.utils.SingleLiveEvent
 import javax.inject.Inject
 
 @HiltViewModel
@@ -23,9 +24,7 @@ class CharacterListViewModel @Inject constructor(
     private val _uiState: MutableLiveData<UiState> = MutableLiveData(UiState())
     val uiState: LiveData<UiState> = _uiState
 
-    private val _detailsEndpoint: MutableLiveData<SeriesCharacter> = MutableLiveData()
-    val detailsEndpoint: LiveData<SeriesCharacter> = _detailsEndpoint
-
+    val navigateToDetailsEvent: SingleLiveEvent<SeriesCharacter> = SingleLiveEvent()
 
     init {
         requestNextPage()
@@ -58,16 +57,11 @@ class CharacterListViewModel @Inject constructor(
     }
 
     fun onCharacterClick(character: SeriesCharacter) {
-        _detailsEndpoint.value = character
-    }
-
-    fun onCharacterDetailsShown(){
-        _detailsEndpoint.value = null
+        navigateToDetailsEvent.value = character
     }
 
     data class UiState(
         val isDataLoading: Boolean = false,
         val errorMessage: String? = null,
-
     )
 }
